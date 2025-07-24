@@ -11,6 +11,12 @@ import App from './component/App.jsx';
 import DitailsCard from './component/DitailsCard/DitailsCard.jsx';
 import UpdateCoffee from './component/UpdateCoffee/UpdateCoffee.JSX';
 import Error from './component/Error/Error.jsx';
+import SignUp from './component/SignUp/SignUp.jsx';
+import AuthProvaider from './component/AuthProvaider/AuthProvaider.jsx';
+import Users from './component/Users/Users.jsx';
+import Singin from './component/Singin/Singin.jsx';
+import PrivetRouter from './component/PrivetRouter/PrivetRouter.jsx';
+// import Update from './component/Update/Update.jsx';
 
 
 const router = createBrowserRouter([
@@ -21,7 +27,7 @@ const router = createBrowserRouter([
     {
     path:'/',
     element: <App></App>,
-    loader: ()=> fetch('http://localhost:5000/coffee')
+    loader: ()=> fetch('https://coffee-store-server-indol-mu.vercel.app/coffee')
     },
     {
     path:'/AddCoffee',
@@ -29,13 +35,31 @@ const router = createBrowserRouter([
     },
     {
   path: '/ditails/:id',
-  element: <DitailsCard></DitailsCard>,
-  loader: ({params})=> fetch(`http://localhost:5000/coffee/${params.id}`)
+  element: <PrivetRouter><DitailsCard></DitailsCard></PrivetRouter> ,
+  loader: ({params})=> fetch(`https://coffee-store-server-indol-mu.vercel.app/${params.id}`)
   },
   {
   path: '/updatecoffee/:id',
-  element: <UpdateCoffee></UpdateCoffee>,
-  loader: ({params})=> fetch(`http://localhost:5000/coffee/${params.id}`)
+  element: <PrivetRouter><UpdateCoffee></UpdateCoffee></PrivetRouter> ,
+  loader: ({params})=> fetch(`https://coffee-store-server-indol-mu.vercel.app/${params.id}`)
+  },
+  {
+  path:'/signup',
+  element: <SignUp></SignUp>
+  },
+  {
+  path:'/users',
+  element: <PrivetRouter><Users></Users></PrivetRouter> ,
+  loader: ()=> fetch(`https://coffee-store-server-indol-mu.vercel.app/users`)
+  },
+  // {
+  // path:'/update',
+  // element: <Update></Update>,
+  // loader: ()=> fetch(`http://localhost:5000/users`)
+  // },
+  {
+  path:'/singin',
+  element: <Singin></Singin>
   },
   {
   path:'*',
@@ -47,6 +71,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+  <AuthProvaider>
     <RouterProvider router={router} />
+  </AuthProvaider>
   </StrictMode>,
 )

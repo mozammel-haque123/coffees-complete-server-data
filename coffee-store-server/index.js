@@ -31,6 +31,7 @@ async function run() {
     // Send a ping to confirm a successful connection
 
    const coffeeCallection = client.db("coffeeDB").collection('coffee');
+   const usersCallection = client.db("coffeeDB").collection('users');
 
     
     //  এভাবেও করা যায়
@@ -88,6 +89,56 @@ async function run() {
   const reasult = await coffeeCallection.insertOne(user)
   res.send(reasult)
  })
+
+//  users
+app.patch('/users', async(req, res)=>{
+const email = req.body.email;
+const filter = {email};
+const update = {
+  $set:{
+ lastSignInTime: req?.body?.lastSignInTime
+  }
+}
+const resul = await usersCallection.updateOne(filter,update);
+res.send(resul)
+})
+
+// app.put('/users/:id', async(req, res)=>{
+// const id = req.params.id;
+// const filter = {_id: new ObjectId(id)};
+// const option = {upsert: true};
+// const updateUsers = req.body;
+// const users = {
+//   $set:{
+// name:updateUsers.name,
+// email:updateUsers.email,
+// gender:updateUsers.gender
+//   }
+// }
+// const result = await usersCallection.updateOne(filter,users,option)
+// res.send(result)
+// })
+
+app.delete('/users/:id', async(req, res)=>{
+const id = req.params.id;
+const query = {_id: new ObjectId(id)};
+const user = await usersCallection.deleteOne(query);
+res.send(user)
+})
+
+app.get('/users', async(req, res)=>{
+ const cursor = usersCallection.find();
+ const result = await cursor.toArray();
+ res.send(result);
+})
+
+app.post('/users', async(req, res)=>{
+const user = req.body;
+console.log(user)
+const result = await usersCallection.insertOne(user)
+res.send(result)
+})
+
 
     await client.db("admin").command({ ping: 1 });
     console.log("Pinged your deployment. You successfully connected to MongoDB!");

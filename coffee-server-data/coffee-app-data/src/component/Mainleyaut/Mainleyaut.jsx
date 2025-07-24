@@ -13,7 +13,7 @@ const Mainleyaut = () => {
      <div className="w-11/12 mx-auto">
         <Outlet></Outlet>
         </div> 
-        <div className={location.pathname === '/AddCoffee'  || location.pathname.startsWith('/ditails/') || location.pathname.startsWith('/updatecoffee/') ? 'hidden' : '' }>
+        <div className={location.pathname === '/AddCoffee' || location.pathname === '/users'  || location.pathname.startsWith('/ditails/') || location.pathname.startsWith('/updatecoffee/') ? 'hidden' : '' }>
      <Cups></Cups>
         </div>
         <div className="mt-8">

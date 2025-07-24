@@ -15,9 +15,9 @@ const AddCoffee = () => {
      const details =  form.details.value
     const coffee = {name,supplier,category,photo,chef,taste,details };
 
-    console.log(coffee);
+    // console.log(coffee);
     
-    fetch('http://localhost:5000/coffee',{
+    fetch('https://coffee-store-server-indol-mu.vercel.app/coffee',{
       method: 'POST',
       headers: {
         'content-type': 'application/json'
@@ -26,7 +26,7 @@ const AddCoffee = () => {
     })
     .then(res => res.json())
     .then(data => {
-      console.log(data)
+      // console.log(data)
       if(data.insertedId){
         Swal.fire({
   title: 'Success!',
@@ -34,6 +34,7 @@ const AddCoffee = () => {
   icon: 'success',
   confirmButtonText: 'Cool'
 })
+  form.reset();
       }
     })
   };

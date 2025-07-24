@@ -20,7 +20,7 @@ const Cups = () => {
             </h2>
 
             <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-                {images.map((img, idx) => (
+                {images?.map((img, idx) => (
                     <div key={idx} className="rounded-xl overflow-hidden shadow-md hover:scale-105 transition-transform duration-300">
                         <img src={img} alt={`coffee-${idx}`} className="w-full h-80 object-cover" />
                     </div>

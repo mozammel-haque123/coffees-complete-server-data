@@ -17,9 +17,9 @@ const UpdateCoffee = () => {
          const details =  form.details.value
         const coffeeUpdate = {name,supplier,category,photo,chef,taste,details };
     
-        console.log(coffeeUpdate);
+        // console.log(coffeeUpdate);
         
-        fetch(`http://localhost:5000/coffee/${loder._id}`,{
+        fetch(`https://coffee-store-server-indol-mu.vercel.app/coffee/${loder._id}`,{
           method: 'PUT',
           headers: {
             'content-type': 'application/json'
@@ -28,7 +28,7 @@ const UpdateCoffee = () => {
         })
         .then(res => res.json())
         .then(data => {
-          console.log(data)
+          // console.log(data)
           if(data.modifiedCount > 0){
             Swal.fire({
       title: 'Success!',

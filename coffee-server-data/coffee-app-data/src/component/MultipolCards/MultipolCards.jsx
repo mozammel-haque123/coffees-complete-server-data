@@ -16,12 +16,12 @@ const MultipolCards = ({coffees,coffesDelet,setCoffeesDelet}) => {
 }).then((result) => {
 
   if (result.isConfirmed) {
-  fetch(`http://localhost:5000/coffee/${id}`, {
+  fetch(`https://coffee-store-server-indol-mu.vercel.app/coffee/${id}`, {
       method: 'DELETE'
      })
      .then(res => res.json())
      .then(data => {
-      console.log(data)
+      // console.log(data)
         if(data.deletedCount > 0){
               Swal.fire({
       title: "Deleted!",
@@ -29,7 +29,7 @@ const MultipolCards = ({coffees,coffesDelet,setCoffeesDelet}) => {
       icon: "success"
     });
 
-    const dataCoffee = coffesDelet.filter((fil)=> fil._id !== id);
+    const dataCoffee = coffesDelet?.filter((fil)=> fil._id !== id);
     setCoffeesDelet(dataCoffee
 
     )

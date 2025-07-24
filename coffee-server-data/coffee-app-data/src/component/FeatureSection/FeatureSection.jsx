@@ -27,7 +27,7 @@ const FeatureSection = () => {
   return (
     <div className="bg-[#EFE9E4] py-10">
       <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 px-5">
-        {features.map((feature, idx) => (
+        {features?.map((feature, idx) => (
           <div key={idx} className="text-center space-y-3">
             <div className="flex justify-center">{feature.icon}</div>
             <h2 className="text-xl font-semibold text-[#4B2E2E] rancho-regular">{feature.title}</h2>
